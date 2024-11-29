@@ -7,9 +7,8 @@ const ProfileScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const [image, setImage] = useState(null); // Estado para armazenar a imagem selecionada
+  const [image, setImage] = useState(null);
 
-  // Função para selecionar a imagem da galeria
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -31,14 +30,12 @@ const ProfileScreen = () => {
     }
   };
 
-  // Função para simular a atualização do perfil
   const updateProfile = () => {
     Alert.alert('Sucesso', 'Perfil atualizado com sucesso!', [
       {
         text: 'OK',
         onPress: () => {
-          // Redirecionando para a página de Home após salvar
-          window.location.href = 'http://localhost:8081/home'; // Redireciona para a página inicial
+          window.location.href = 'http://localhost:8081/home';
         },
       },
     ]);
@@ -48,19 +45,16 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Perfil</Text>
 
-      {/* Exibe a imagem de perfil ou um texto caso não tenha imagem */}
       {image ? (
         <Image source={{ uri: image }} style={styles.profilePicture} />
       ) : (
         <Text style={styles.noProfilePicture}>Sem foto de perfil</Text>
       )}
 
-      {/* Botão para alterar a foto */}
       <TouchableOpacity style={styles.changePictureButton} onPress={pickImage}>
         <Text style={styles.changePictureButtonText}>Alterar Foto</Text>
       </TouchableOpacity>
 
-      {/* Campos de input */}
       <TextInput
         style={styles.input}
         placeholder="Nome"
@@ -91,7 +85,6 @@ const ProfileScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Botão para salvar as alterações */}
       <TouchableOpacity style={styles.saveButton} onPress={updateProfile}>
         <Text style={styles.saveButtonText}>Salvar Alterações</Text>
       </TouchableOpacity>
